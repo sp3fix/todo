@@ -13,28 +13,24 @@ body {
   font-family: Raleway;
   font-weight: 700;
   padding: 2em;
-  height: 94vh;
+  height: 90vh;
   grid-template-columns: 30vw 30vw 30vw; 
   grid-template-areas: 
     "first-pane second-pane third-pane"; }
 
-.header-bar {
-  height: 6vh;
-  background-color: purple; }
+.header-bar { height: 10vh; }
 
 .first-pane {
   grid-area: first-pane;
   z-index: -3; 
-  padding: 0.6em 0em 2em 0.8em;
-  border-right: solid purple}
+  padding: 0.6em 0em 2em 0.8em;}
 
 .second-pane {
   display: block;
   background-color: white;
   grid-area: second-pane;
   z-index: -2;
-  padding: 2em 1.8em;
-  border-right: solid purple}
+  padding: 2em 1.8em;}
 
 .third-pane {
   grid-area: third-pane;
@@ -46,13 +42,13 @@ body {
   .project-container {
     display: grid;
     padding: 0;
-    height: 94vh;
+    height: 90vh;
     grid-template-columns: 50vw 50vw; }
 
   .third-pane {
     display: none;
     position: absolute;
-    height: 94vh;
+    height: 90vh;
     left: 50vw;
     width: 50vw; }
 }
@@ -71,14 +67,14 @@ body {
   .first-pane {
     position: absolute;
     width: 100vw;
-    height: 94vh; }
+    height: 90vh; }
   
   .second-pane, .third-pane {
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100vw;
-    height: 94vh;
+    height: 90vh;
     display: none;
   } 
 }
@@ -90,19 +86,18 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  border-bottom: 1px solid grey;
   padding: 2em 0;
   }
 
 .project-title h2 { font-size: 2em; }
 
-.project-title span { padding: 0 0.8em }
+.project-task { 
+  padding: 0.8em;}
 
 /* SECOND PANE CSS */
-#task-header {
+.task-header {
   margin-left: 0em;
   font-size: 1.8em;
-  font-weight: 700;
   padding-bottom: 1em;}
 
 .task-container {
@@ -118,31 +113,42 @@ body {
   align-items: baseline; }
 
 .task-button {
-  border-radius: 100%;
-  border: 1px solid grey;
+  border: 1px solid #f24d29;
   height: 40px;
   width: 40px;
   margin: 0.5em;
   margin-right: 0.9em; }
 
-.task-item h3 { 
+
+.task-title { 
   font-size: 1.2em;
   margin: auto;
   }
 
-.task-container span {
+
+.completed .task-title {
+  text-decoration: line-through;
+  color: #965e4f;
+}
+.completed .task-button {
+  background: url('img/done.gif') center no-repeat;
+  background-size: 1.4em;
+  border-radius: 100%;
+  background-color: #f24d29}
+
+.task-dueDate {
   margin: auto 0;
-  padding: 0 0.8em;
-  font-size: 0.8em;}
+  padding: 0.5em 0.8em;
+  font-size: 0.8em;
+}
 
 /* THIRD PANE CSS */
-#task-desc-title {
+.task-desc-title {
   font-size: 1.8em;
-  font-weight: 700;
   margin-bottom: 1em;}
 
-#task-desc-box {
-  border: 1px solid grey;
+.task-desc-box {
+  border: 1px solid #d3d3d3;
   font-family: 'Open Sans';
   color: grey;
   border-radius: 3pt;
@@ -150,14 +156,24 @@ body {
   height: 20vh;
 }
 
-#task-btns {
+.task-btns {
   margin-top: 20vh;
 }
 
-#dueDate {
+.dueDate {
   margin: auto;
   margin-bottom: 1em;
-  background-color: purple;
+  border-radius: 4pt;
+  width: 8em;
+  height: 2em;
+  font-size: 1.7em;
+  text-align: center;
+  line-height: 2em;
+}
+
+.timer {
+  margin: auto;
+  background-color: #f24d29;
   border-radius: 4pt;
   width: 8em;
   height: 2em;
@@ -167,14 +183,29 @@ body {
   color: white
 }
 
-#timer {
-  margin: auto;
-  background-color: rgb(41, 0, 41);
-  border-radius: 4pt;
-  width: 8em;
-  height: 2em;
-  font-size: 1.7em;
-  text-align: center;
-  line-height: 2em;
-  color: white
+.button-add {
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  bottom: 1.5em;
+  right: 2em;
+  background: url('img/add.gif') center no-repeat;
+  background-size: 1.9em;
+  background-color: #f24d29;
 }
+
+/* UTILITIES */
+
+.shadow { box-shadow: 0px 7px 10px -5px rgba(0,0,0,0.6); }
+
+.bold { font-weight: 700; }
+
+.red { background-color: #1c366b; color:white}
+
+.round {border-radius: 100%}
+
+.first-pane .project-title { border-bottom: 1px solid #d3d3d3; }
+
+.border-right { border-right: solid #1c366b}
+
+.border-btn { }
