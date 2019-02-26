@@ -9,10 +9,12 @@ body {
 }
 
 .project-container {
+  position: relative;
   display: grid;
   font-family: Raleway;
   font-weight: 700;
   height: 100vh;
+  width: 850px;
   grid-template-columns: 250px auto; 
   grid-template-areas: 
     "left-pane right-pane"; }
@@ -24,19 +26,22 @@ body {
   background-color: #2196f3;}
 
 .right-pane {
-  display: block;
+  display: flex;
+  flex-flow: column;
   background-color: white;
   grid-area: right-pane;
   padding: 0.6em;}
 
 
 /* MOBILE ONLY */
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 950px) {
   
   body { font: normal 50% Raleway, Arial, sans-serif; }
 
   .project-container {
     display: block;
+    width: 100vw;
+    margin: 0;
   }
 
   .left-pane {
@@ -44,16 +49,20 @@ body {
     transition: .1s linear;
     overflow: hidden;}
 
-  .left-pane.open {
-    height: 310px;
-  }
+  .left-pane.open { height: 380px; }
 
-  .left-pane.close {
-    height: 100px;
-  }
+  .left-pane.close { height: 100px; }
   
-  .jumbotron { margin: 5em; }
+  .right-pane h1 { display: none; }
 
+  .jumbotron { margin: 0; }
+
+  .button-add {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    margin: 0px;
+  }
   .nav-icon {
     width: 45px;
     height: 45px;
@@ -82,6 +91,7 @@ body {
 .nav-item {
   font-size: 1.1em;
   padding: 1em 0;
+  margin: 1em 0;
   padding-left: 2.6em;
   opacity: 0.8;
 }
@@ -104,15 +114,19 @@ body {
 
 /* JUMBOTRON */
 
+.right-pane h1 {
+  padding: 0.5em;
+  font-size: 3em;
+  font-weight: 700;
+}
+
 .jumbotron {
-  background-color: #eeeeee;
-  margin: auto;
 } 
 
 .todo-item {
   display: flex;
   flex-flow: row wrap;
-  padding: 1em;
+  padding: 1.5em 1em;
   align-content: baseline;
   justify-content: space-between;
   font-family: 'Open Sans';
@@ -141,11 +155,22 @@ body {
   margin:  0 0.6em;
 }
 
+[data-type-completed='1'] .todo-btn {
+  background: url('img/done.gif') center no-repeat;
+  background-size: 20px;
+  background-color: #2196f3;
+}
+
+[data-type-completed='1'] {
+  text-decoration: line-through;
+  color: grey;
+}
+
 .todo-imp {
   width: 30px;
   height: 30px;
-  border: 1px solid #2196f3;
-  background-color: #2196f3;
+  background: url('img/imp.gif') center no-repeat;
+  background-size: 30px;
   margin:  0 0.6em;
 }
 

@@ -3,6 +3,8 @@ import './reset.css';
 import * as firebase from 'firebase';
 import { createItem, saveItem, removeItem } from './scripts/eventControler.js';
 import { seeds } from './scripts/seeds.js'
+import { render } from './scripts/initDB.js'
+import { navBtn } from './scripts/displayController.js'
 
 // Initialize Firebase
 var config = {
@@ -16,27 +18,16 @@ var config = {
 firebase.initializeApp(config);
 
 let ref = firebase.database().ref('/todo')
+navBtn()
 
 // seeds(ref)
 
 ref.on("child_added", function(snapshot) {
-  var project = snapshot.val();
+  var snap = snapshot.val();
+  // if(snap.completed === 0 ) render(snap, snapshot.key);
+  render(snap, snapshot.key)
   console.log(`${snapshot.key} has been added`);
 });
 
-let navBtn = document.querySelector('.nav-icon');
-
-navBtn.addEventListener('click', (e) => {
-  let header = document.querySelector('.left-pane');
-  if(e.target.id === 'close') {
-    // header.style.height = '310px';
-    header.setAttribute('class', 'left-pane open');
-    e.target.id = 'open';
-  } else {
-    // header.style.height = '100px';
-    header.setAttribute('class', 'left-pane close');
-    e.target.id = 'close';
-  }
-})
 
 
