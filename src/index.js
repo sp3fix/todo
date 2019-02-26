@@ -24,4 +24,19 @@ ref.on("child_added", function(snapshot) {
   console.log(`${snapshot.key} has been added`);
 });
 
+let navBtn = document.querySelector('.nav-icon');
+
+navBtn.addEventListener('click', (e) => {
+  let header = document.querySelector('.left-pane');
+  if(e.target.id === 'close') {
+    // header.style.height = '310px';
+    header.setAttribute('class', 'left-pane open');
+    e.target.id = 'open';
+  } else {
+    // header.style.height = '100px';
+    header.setAttribute('class', 'left-pane close');
+    e.target.id = 'close';
+  }
+})
+
 

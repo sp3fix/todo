@@ -12,175 +12,83 @@ body {
   display: grid;
   font-family: Raleway;
   font-weight: 700;
-  padding: 2em;
-  height: 90vh;
-  grid-template-columns: 30vw 30vw 30vw; 
+  height: 100vh;
+  grid-template-columns: 250px auto; 
   grid-template-areas: 
-    "first-pane second-pane third-pane"; }
+    "left-pane right-pane"; }
 
-.header-bar { height: 10vh; }
+.left-pane {
+  grid-area: left-pane;
+  height: 100vh;
+  padding: 0.6em;
+  background-color: #2196f3;}
 
-.first-pane {
-  grid-area: first-pane;
-  z-index: -3; 
-  padding: 0.6em 0em 2em 0.8em;}
-
-.second-pane {
+.right-pane {
   display: block;
   background-color: white;
-  grid-area: second-pane;
-  z-index: -2;
-  padding: 2em 1.8em;}
+  grid-area: right-pane;
+  padding: 0.6em;}
 
-.third-pane {
-  grid-area: third-pane;
-  background-color: white;
-  z-index: -1; 
-  padding: 2em 1.8em;}
-
-@media only screen and (max-width: 1200px) {
-  .project-container {
-    display: grid;
-    padding: 0;
-    height: 90vh;
-    grid-template-columns: 50vw 50vw; }
-
-  .third-pane {
-    display: none;
-    position: absolute;
-    height: 90vh;
-    left: 50vw;
-    width: 50vw; }
-}
 
 /* MOBILE ONLY */
-@media only screen and (max-width: 600px) {
- 
-  body {
-    font: normal 60% Raleway, Arial, sans-serif;
-  }
+@media only screen and (max-width: 700px) {
+  
+  body { font: normal 50% Raleway, Arial, sans-serif; }
 
   .project-container {
-    display: block; 
-    padding: 0;}
+    display: block;
+  }
 
-  .first-pane {
-    position: absolute;
-    width: 100vw;
-    height: 90vh; }
+  .left-pane {
+    height: 100px;
+    transition: .1s linear;
+    overflow: hidden;}
+
+  .left-pane.open {
+    height: 310px;
+  }
+
+  .left-pane.close {
+    height: 100px;
+  }
   
-  .second-pane, .third-pane {
+  .jumbotron { margin: 5em; }
+
+  .nav-icon {
+    width: 45px;
+    height: 45px;
     position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 90vh;
-    display: none;
-  } 
-}
-
-
-
-/* FIRST PANE CSS */
-.project-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 2em 0;
+    top: 30px;
+    right: 35px;
+    background: url('img/menu.gif') center no-repeat;
+    background-size: 45px;
+    cursor: pointer;
   }
-
-.project-title h2 { font-size: 2em; }
-
-.project-task { 
-  padding: 0.8em;}
-
-/* SECOND PANE CSS */
-.task-header {
-  margin-left: 0em;
-  font-size: 1.8em;
-  padding-bottom: 1em;}
-
-.task-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 0.5em 0;
-  font-family: Raleway;
-  font-weight: 400;}
-
-.task-item {
-  display: flex;
-  align-items: baseline; }
-
-.task-button {
-  border: 1px solid #f24d29;
-  height: 40px;
-  width: 40px;
-  margin: 0.5em;
-  margin-right: 0.9em; }
-
-
-.task-title { 
-  font-size: 1.2em;
-  margin: auto;
-  }
-
-
-.completed .task-title {
-  text-decoration: line-through;
-  color: #965e4f;
-}
-.completed .task-button {
-  background: url('img/done.gif') center no-repeat;
-  background-size: 1.4em;
-  border-radius: 100%;
-  background-color: #f24d29}
-
-.task-dueDate {
-  margin: auto 0;
-  padding: 0.5em 0.8em;
-  font-size: 0.8em;
 }
 
-/* THIRD PANE CSS */
-.task-desc-title {
-  font-size: 1.8em;
-  margin-bottom: 1em;}
-
-.task-desc-box {
-  border: 1px solid #d3d3d3;
-  font-family: 'Open Sans';
-  color: grey;
-  border-radius: 3pt;
-  padding: 0.6em;
-  height: 20vh;
+/* NAVIGATION BAR */
+.nav-bar {
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  color: white;
 }
 
-.task-btns {
-  margin-top: 20vh;
+.nav-title {
+  font-size: 3em;
+  padding: 0.3em 0.5em;
+  color: white;
 }
 
-.dueDate {
-  margin: auto;
-  margin-bottom: 1em;
-  border-radius: 4pt;
-  width: 8em;
-  height: 2em;
-  font-size: 1.7em;
-  text-align: center;
-  line-height: 2em;
+.nav-item {
+  font-size: 1.1em;
+  padding: 1em 0;
+  padding-left: 2.6em;
+  opacity: 0.8;
 }
 
-.timer {
-  margin: auto;
-  background-color: #f24d29;
-  border-radius: 4pt;
-  width: 8em;
-  height: 2em;
-  font-size: 1.7em;
-  text-align: center;
-  line-height: 2em;
-  color: white
+.nav-item:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .button-add {
@@ -192,6 +100,61 @@ body {
   background: url('img/add.gif') center no-repeat;
   background-size: 1.9em;
   background-color: #f24d29;
+}
+
+/* JUMBOTRON */
+
+.jumbotron {
+  background-color: #eeeeee;
+  margin: auto;
+} 
+
+.todo-item {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 1em;
+  align-content: baseline;
+  justify-content: space-between;
+  font-family: 'Open Sans';
+}
+
+.todo-part1 {
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: baseline;
+}
+
+.todo-part2 {
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: baseline;
+}
+
+.todo-title {
+  padding: 0.5em;
+}
+
+.todo-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #2196f3;
+  margin:  0 0.6em;
+}
+
+.todo-imp {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #2196f3;
+  background-color: #2196f3;
+  margin:  0 0.6em;
+}
+
+.todo-dueDate {
+  padding: 0.5em;
+}
+
+.todo-category {
+  padding: 0.5em;
 }
 
 /* UTILITIES */

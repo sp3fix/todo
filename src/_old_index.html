@@ -1,0 +1,102 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Best Todo App Ever !</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway" rel="stylesheet"> 
+</head>
+<body>
+	<div class="container">
+		<div class="header-bar shadow red">
+			<h1>This is the header</h1>
+		</div>
+		<div class="project-container">
+			<div class="first-pane bold border-right">
+				<div class="project-title">
+					<h2>Project #1</h2>
+						<span class="project-task red">3 tasks</span>
+				</div>
+				<div class="project-title">
+						<h2>Project #2</h2>
+							<span class="project-task red">3 tasks</span>
+					</div>
+					<div class="project-title">
+							<h2>Project #3</h2>
+								<span class="project-task red">3 tasks</span>
+						</div>
+			</div>
+			<div class="second-pane border-right">
+				<div class="task-header bold">Project #2</div>
+				<div id="task-1" class="task-container">
+					<div class="task-item">
+						<div class="task-button round"></div>
+						<h3 class="task-title">Task #1</h3>
+					</div>
+					<span class="task-dueDate red bold">23/4/2019</span>
+				</div>
+				<div id="task-2" class="task-container">
+					<div class="task-item completed">
+						<div class="task-button"></div>
+						<h3 class="task-title">Task #2</h3>
+					</div>
+					<span class="task-dueDate red bold">23/4/2019</span>
+				</div>
+				<div id="task-2" class="task-container">
+						<div class="task-item">
+							<div class="task-button round"></div>
+							<h3 class="task-title">Task #3</h3>
+						</div>
+						<span class="task-dueDate red bold">23/4/2019</span>
+				</div>
+				<div id="task-2" class="task-container">
+						<div class="task-item">
+							<div class="task-button round"></div>
+							<h3 class="task-title ">Task #4</h3>
+						</div>
+						<span class="task-dueDate red bold">23/4/2019</span>
+				</div>
+				<div id="task-2" class="task-container">
+						<div class="task-item">
+							<div class="task-button round"></div>
+							<h3 class="task-title">Task #5</h3>
+						</div>
+						<span class="task-dueDate red bold">23/4/2019</span>
+				</div>
+				<div id="task-2" class="task-container">
+						<div class="task-item completed">
+							<div class="task-button"></div>
+							<h3 class="task-title">Task #6</h3>
+						</div>
+						<span class="task-dueDate red bold">23/4/2019</span>
+				</div>
+			</div>
+			<div class="third-pane">
+				<h3 class="task-desc-title bold">Task #1</h3>
+				<div class="task-desc-box">This is a description of the task</div>
+				<div class="task-btns">
+					<div class="dueDate red shadow bold">23/04/2019</div>
+					<div class="timer shadow bold">Start Timer</div>
+				</div>
+			</div>
+		</div>
+		<div class="button-add shadow round"></div>
+	</div>
+</body>
+<script src="bundle.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+<script>
+	
+	// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyCT8Sgajy-1nLVRXLJo3rTsmve3KM7XyO4",
+  authDomain: "todo-eb79a.firebaseapp.com",
+  databaseURL: "https://todo-eb79a.firebaseio.com",
+  projectId: "todo-eb79a",
+  storageBucket: "todo-eb79a.appspot.com",
+  messagingSenderId: "7815036995"
+};
+firebase.initializeApp(config);
+</script>
+</html>
