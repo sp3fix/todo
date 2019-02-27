@@ -14,5 +14,23 @@ const navBtn = () => {
 }
 
 
+const delayedDestroyItem = (key) => {
+  let currentNode = document.getElementById(key);
+  fadeOut(currentNode)
+}
 
-export { navBtn }
+function fadeOut(el){
+  el.style.opacity = 1;
+
+  (function fade() {
+    if ((el.style.opacity -= 0.075) < 0) {
+      el.style.display = "none";
+    } else {
+      requestAnimationFrame(fade);
+    }
+  })();
+}
+
+
+
+export { navBtn, delayedDestroyItem }

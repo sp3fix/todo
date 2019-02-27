@@ -1,53 +1,49 @@
+import { delayedDestroyItem } from './displayController.js'
+
 const createItem = (name, dueDate, importance, parent) => {
   return {name, dueDate, importance, parent}
 }
 
-const saveItem = (obj) => {
-  ref.push(obj)
-}
-
-const removeItem = (key) => {
-  ref.child(key).remove()
-}
-
-const delayedDestroyItem = (key) => {
-  let currentNode = document.getElementById(key);
-  fadeOut(currentNode)
-}
 
 const updateItem = (key, element, value) => {
-  let update = {};
-  update['/' + key + '/' + element] = value;
-  return ref.update(updates);
-}
-
-function fadeOut(el){
-  el.style.opacity = 1;
-
-  (function fade() {
-    if ((el.style.opacity -= 0.075) < 0) {
-      el.style.display = "none";
-    } else {
-      requestAnimationFrame(fade);
-    }
-  })();
-}
-
-const completedBtn = (e) => {
   let ref = firebase.database().ref('/todo')
-  let target = e.target.parentNode.parentNode;
-  let key = target.getAttribute('id');
-  let status = target.getAttribute('data-type-completed');
-  let newStatus = (status === '0') ? 1 : 0 ;
-  target.setAttribute('data-type-completed', newStatus);
-
-  if(newStatus === 1) delayedDestroyItem(key);
-  
   let updates = {};
-  updates['/' + key + '/completed'] = newStatus;
+  updates['/' + key + '/' + element] = value;
   return ref.update(updates);
 }
 
+const getKey = (target) => {
+  let key = target.getAttribute('id');
+  return key;
+}
 
-export { createItem, saveItem, removeItem, updateItem, completedBtn}
+const completedBtn = (e, element) => {
+  let target = e.target.parentNode.parentNode;
+  let key = getKey(target);
+  // let status = target.getAttribute('data-type-completed');
+  let status = target.getAttribute(`data-type-${element}`);
+  let newStatus = (status === '0') ? 1 : 0 ;
+  target.setAttribute(`data-type-${element}`, newStatus);
+
+  if(element === 'completed') {
+    if(newStatus === 1) delayedDestroyItem(key);
+  }
+  updateItem(key, element, newStatus)
+}
+
+const impBtn = (e) => {
+  let target = e.target.parentNode.parentNode;
+  let key = getKey(target);
+  let status = target.getAttribute('data-type-imp');
+  let newStatus = (status === '0') ? 1 : 0 ;
+}
+
+const saveItem = (e) => {
+  let key = getKey(e.target.parentNode.parentNode);
+  let element = e.target.getAttribute('class').replace(/todo-/,"")
+  let value = e.target.value;
+  updateItem(key, element, value);
+}
+
+export { createItem, updateItem, completedBtn, saveItem}
 

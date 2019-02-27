@@ -127,7 +127,6 @@ body {
   display: flex;
   flex-flow: row wrap;
   padding: 1.5em 1em;
-  align-content: baseline;
   justify-content: space-between;
   font-family: 'Open Sans';
 }
@@ -135,24 +134,32 @@ body {
 .todo-part1 {
   display: flex;
   flex-flow: row nowrap;
-  align-content: baseline;
 }
 
 .todo-part2 {
   display: flex;
   flex-flow: row nowrap;
-  align-content: baseline;
+  align-items: baseline;
+  font-size: 0.8em;
+  padding: 0.5em 0;
 }
 
 .todo-title {
+  border: none;
   padding: 0.5em;
+}
+
+.todo-item input:focus {
+  border-bottom: 1px solid #2196f3;
+  color: grey;
 }
 
 .todo-btn {
   width: 30px;
   height: 30px;
   border: 1px solid #2196f3;
-  margin:  0 0.6em;
+  margin:  0.2em 0.6em;
+  align-self: center;
 }
 
 [data-type-completed='1'] .todo-btn {
@@ -166,21 +173,34 @@ body {
   color: grey;
 }
 
-.todo-imp {
+
+[data-type-importance = '1'] .todo-imp { 
   width: 30px;
   height: 30px;
-  background: url('img/imp.gif') center no-repeat;
-  background-size: 30px;
   margin:  0 0.6em;
+  align-self: center;
+  background: url('img/imp.gif') center no-repeat; 
+  background-size: 30px;}
+
+[data-type-importance = '0'] .todo-imp {
+  width: 30px;
+  height: 30px;
+  margin:  0 0.6em;
+  align-self: center;
+  background: url('img/notImp.gif') center no-repeat; 
+  background-size: 30px;
 }
 
-.todo-dueDate {
+.todo-dueDate { 
   padding: 0.5em;
-}
+  border:none;
+  width: 6em; }
 
-.todo-category {
-  padding: 0.5em;
-}
+
+.todo-category { 
+  padding: 0.5em; 
+  border:none;
+  width: 6em;}
 
 /* UTILITIES */
 
