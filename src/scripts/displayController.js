@@ -92,4 +92,5 @@ const addFilters = (nodes) => {
   Array.from(nodes).map(node => node.addEventListener('click', (e) => { filterAdmin(e.target.id) }))
 }
 
+
 export { navBtn, delayedDestroyItem, addNewBtn, addFilters , filterAdmin}

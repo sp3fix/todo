@@ -1,9 +1,8 @@
 import './style.css';
 import './reset.css';
 import * as firebase from 'firebase';
-import { seeds } from './scripts/seeds.js'
-import { render } from './scripts/initDB.js'
 import { navBtn, addNewBtn, filterAdmin, addFilters } from './scripts/displayController.js'
+import { onReady, show } from './scripts/loading-screen.js'
 
 // Initialize Firebase
 var config = {
@@ -21,6 +20,11 @@ const getRef = () => {
   let ref = firebase.database().ref('/todo');
   return ref
 }
+
+onReady(function () {
+  show('container', true);
+  show('loading', false);
+});
 
 navBtn()
 addNewBtn()
