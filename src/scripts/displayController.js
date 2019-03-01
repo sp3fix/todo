@@ -35,7 +35,7 @@ function fadeOut(el){
 }
 
 const newElement = () => {
-  let ref = firebase.database().ref('/todo');
+  let ref = getRef();
   let date = new Date();
   let today = `${date.getDate()}/${(date.getMonth() + 1)}/${date.getFullYear()}`;
   let newObj = {title :'New Item', dueDate: today, importance: 0, category: 'Undefined', completed : 0}
