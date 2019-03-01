@@ -1,4 +1,4 @@
-import { completedBtn, saveItem } from './eventControler.js'
+import { completedBtn, saveItem, deleteItem } from './eventControler.js'
 
 const render = (snap, key) => {
   let jumbotron = document.querySelector('.jumbotron');
@@ -10,6 +10,7 @@ const render = (snap, key) => {
   let part2 = createDiv('todo-part2');
   let category = createInput('todo-category', snap.category);
   let dueDate = createInput('todo-dueDate', snap.dueDate);
+  let deleteBtn = createDiv('todo-delete');
 
   let completedness = (snap.completed === 0) ? 0 : 1;
   item.setAttribute('data-type-completed', completedness) 
@@ -19,6 +20,7 @@ const render = (snap, key) => {
 
   imp.addEventListener('click', (e) => { completedBtn(e, 'importance') })
   btn.addEventListener('click', (e) => { completedBtn(e, 'completed') })
+  deleteBtn.addEventListener('click', (e) => { deleteItem(e) })
   title.addEventListener('focusout', (e) => { saveItem(e) })
   dueDate.addEventListener('focusout', (e) => { saveItem(e) })
   category.addEventListener('focusout', (e) => { saveItem(e) })
@@ -29,12 +31,12 @@ const render = (snap, key) => {
         part1.appendChild(title);
         part2.appendChild(category);
         part2.appendChild(dueDate);
+        part2.appendChild(deleteBtn);
       item.appendChild(part1);
       item.appendChild(part2);
-    jumbotron.appendChild(item);
+    jumbotron.insertBefore(item, jumbotron.childNodes[2]);
 
 }
-
 
 const createDiv = (name) => {
   let temp = document.createElement('div');

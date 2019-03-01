@@ -102,7 +102,7 @@ body {
 }
 
 .button-add {
-  position: absolute;
+  position: fixed;
   height: 80px;
   width: 80px;
   bottom: 1.5em;
@@ -110,6 +110,7 @@ body {
   background: url('img/add.gif') center no-repeat;
   background-size: 1.9em;
   background-color: #f24d29;
+  cursor: pointer;
 }
 
 /* JUMBOTRON */
@@ -157,7 +158,7 @@ body {
 .todo-btn {
   width: 30px;
   height: 30px;
-  border: 1px solid #2196f3;
+  border: 2px solid #2196f3;
   margin:  0.2em 0.6em;
   align-self: center;
 }
@@ -201,6 +202,19 @@ body {
   padding: 0.5em; 
   border:none;
   width: 6em;}
+
+.todo-delete {
+  width: 20px;
+  height: 20px;
+  background: url('img/delete.gif');
+  margin:  0.2em;
+  align-self: center;
+  cursor: pointer;
+}
+
+.todo-delete:hover {
+  background: url('img/delete2.gif');
+}
 
 /* UTILITIES */
 

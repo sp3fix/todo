@@ -1,15 +1,8 @@
 import { delayedDestroyItem } from './displayController.js'
+import { getRef } from '../index.js'
 
 const createItem = (name, dueDate, importance, parent) => {
   return {name, dueDate, importance, parent}
-}
-
-
-const updateItem = (key, element, value) => {
-  let ref = firebase.database().ref('/todo')
-  let updates = {};
-  updates['/' + key + '/' + element] = value;
-  return ref.update(updates);
 }
 
 const getKey = (target) => {
@@ -17,10 +10,24 @@ const getKey = (target) => {
   return key;
 }
 
+const updateItem = (key, element, value) => {
+  let ref = getRef();
+  let updates = {};
+  updates['/' + key + '/' + element] = value;
+  return ref.update(updates);
+}
+
+const deleteItem = (e) => {
+  let key = getKey(e.target.parentNode.parentNode);
+  let ref = getRef();
+  ref.child(`/${key}`).remove();
+  delayedDestroyItem(key)
+}
+
 const completedBtn = (e, element) => {
   let target = e.target.parentNode.parentNode;
   let key = getKey(target);
-  // let status = target.getAttribute('data-type-completed');
+
   let status = target.getAttribute(`data-type-${element}`);
   let newStatus = (status === '0') ? 1 : 0 ;
   target.setAttribute(`data-type-${element}`, newStatus);
@@ -31,13 +38,6 @@ const completedBtn = (e, element) => {
   updateItem(key, element, newStatus)
 }
 
-const impBtn = (e) => {
-  let target = e.target.parentNode.parentNode;
-  let key = getKey(target);
-  let status = target.getAttribute('data-type-imp');
-  let newStatus = (status === '0') ? 1 : 0 ;
-}
-
 const saveItem = (e) => {
   let key = getKey(e.target.parentNode.parentNode);
   let element = e.target.getAttribute('class').replace(/todo-/,"")
@@ -45,5 +45,5 @@ const saveItem = (e) => {
   updateItem(key, element, value);
 }
 
-export { createItem, updateItem, completedBtn, saveItem}
+export { createItem, updateItem, completedBtn, saveItem, deleteItem, getRef }
 

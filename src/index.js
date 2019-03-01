@@ -1,10 +1,9 @@
 import './style.css';
 import './reset.css';
 import * as firebase from 'firebase';
-import { createItem, saveItem, removeItem } from './scripts/eventControler.js';
 import { seeds } from './scripts/seeds.js'
 import { render } from './scripts/initDB.js'
-import { navBtn } from './scripts/displayController.js'
+import { navBtn, addNewBtn, filterAdmin, addFilters } from './scripts/displayController.js'
 
 // Initialize Firebase
 var config = {
@@ -17,17 +16,15 @@ var config = {
 };
 firebase.initializeApp(config);
 
-let ref = firebase.database().ref('/todo')
+
+const getRef = () => {
+  let ref = firebase.database().ref('/todo');
+  return ref
+}
+
 navBtn()
+addNewBtn()
+addFilters(document.querySelectorAll('.nav-link'))
+filterAdmin()
 
-// seeds(ref)
-
-ref.on("child_added", function(snapshot) {
-  var snap = snapshot.val();
-  // if(snap.completed === 0 ) render(snap, snapshot.key);
-  render(snap, snapshot.key)
-  console.log(`${snapshot.key} has been added`);
-});
-
-
-
+export { getRef }
